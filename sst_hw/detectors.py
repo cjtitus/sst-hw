@@ -1,6 +1,6 @@
-from . import REAL_API, SIM_API
+from . import REAL, SIM
 
-if REAL_API:
+if REAL:
     from sst_hw_real.detectors import *
-elif SIM_API:
+elif SIM:
     from sst_hw_sim.detectors import *

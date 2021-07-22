@@ -11,9 +11,13 @@ SIM_API = ["sim"]
 binding_specified = SST_API in os.environ
 
 os.environ.setdefault(SST_API, 'real')
+API = os.environ[SST_API].lower()
 
 initial_api = API
 assert API in (REAL_API + SIM_API)
+
+REAL = True
+SIM = False
 
 if API in REAL_API:
     try:
@@ -24,5 +28,7 @@ if API in REAL_API:
 if API in SIM_API:
     try:
         from sst_hw_sim import __version__ as SIM_HW_VERSION
+        REAL = False
+        SIM = True
     except ImportError:
         raise RuntimeError("No SST HW packages found")
