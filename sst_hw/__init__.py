@@ -1,8 +1,16 @@
 import os
+from pkg_resources import get_distribution, DistributionNotFound
 
 """
 Style imitated shamelessly from qtpy: https://github.com/spyder-ide/qtpy/blob/master/qtpy/__init__.py
 """
+
+try:
+    __version__ = get_distribution(__name__).version
+except DistributionNotFound:
+   # package is not installed
+   pass
+
 SST_API = "SST_HW"
 
 REAL_API = ["real"]
